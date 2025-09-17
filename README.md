@@ -25,17 +25,17 @@ Makefile               # Tareas comunes
 flowchart LR
 
     %% Entrada
-    A[📷 Cámara (OpenCV - Cv2Camera)] -->|captura frame BGR| B[🧠 Pose Estimator<br/>(YOLOv8)]
+    A[Cámara (OpenCV - Cv2Camera)] -->|captura frame BGR| B[Pose Estimator<br/>(YOLOv8)]
 
     %% Inferencia
     B -->|keypoints, confianza| C[(Post-procesamiento<br/>Keypoints → Pose Entities)]
 
     %% Control
-    C --> D[🎮 Controlador de Animación<br/>(mapping de joints)]
-    D --> E[🕴️ Modelo 3D<br/>(Panda3D/Engine 3D)]
+    C --> D[Controlador de Animación<br/>(mapping de joints)]
+    D --> E[Modelo 3D<br/>(Panda3D/Engine 3D)]
 
     %% Retroalimentación opcional
-    E -->|estado, feedback| F[⚙️ Lógica de Control / UI]
+    E -->|estado, feedback| F[Lógica de Control / UI]
 
     %% Tests y herramientas
     subgraph Herramientas
