@@ -9,8 +9,8 @@ wheels/
 # Virtual environments
 .venv
 
-.pt
-.glb
+*.pt
+*.glb
 
 outputs/
 outputs/**
@@ -18,3 +18,5 @@ logs/
 reports/
 tmp/
 .DS_Store
+
+.vscode
