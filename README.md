@@ -25,8 +25,8 @@ Makefile               # Tareas comunes
 flowchart TD
     A[Apertura de la cámara] --> B[Lectura y conversión de imagen a landmarks]
     B --> C[Inferencia modelo Yolo]
-    D --> E[Estimación de pose]
-    D --> F[Transmisión de datos al modelo 3D]
+    C --> D[Estimación de pose]
+    D --> E[Transmisión de datos al modelo 3D]
 ```
 
 ## Primeros pasos
