@@ -1,0 +1,9 @@
+ultralytics
+opencv-python
+numpy
+websockets
+pydantic
+panda3d
+panda3d-gltf
+streamlit
+scipy
