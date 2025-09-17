@@ -22,35 +22,11 @@ Makefile               # Tareas comunes
 **Pipeline (resumen):**
 
 ```mermaid
-flowchart LR
-
-    %% Entrada
-    A[Cámara (OpenCV - Cv2Camera)] -->|captura frame BGR| B[Pose Estimator<br/>(YOLOv8)]
-
-    %% Inferencia
-    B -->|keypoints, confianza| C[(Post-procesamiento<br/>Keypoints → Pose Entities)]
-
-    %% Control
-    C --> D[Controlador de Animación<br/>(mapping de joints)]
-    D --> E[Modelo 3D<br/>(Panda3D/Engine 3D)]
-
-    %% Retroalimentación opcional
-    E -->|estado, feedback| F[Lógica de Control / UI]
-
-    %% Tests y herramientas
-    subgraph Herramientas
-        T1[pytest] --> B
-        T1 --> C
-        T1 --> D
-    end
-
-    style A fill:#bbf,stroke:#333,stroke-width:1px
-    style B fill:#f9f,stroke:#333,stroke-width:2px
-    style C fill:#ffb,stroke:#333,stroke-width:1px
-    style D fill:#bfb,stroke:#333,stroke-width:1px
-    style E fill:#fdd,stroke:#333,stroke-width:1px
-    style F fill:#ddd,stroke:#333,stroke-width:1px
-    style T1 fill:#eee,stroke:#333,stroke-width:1px
+flowchart TD
+    A[Apertura de la cámara] --> B[Lectura y conversión de imagen a landmarks]
+    B --> C[Inferencia modelo Yolo]
+    D --> E[Estimación de pose]
+    D --> F[Transmisión de datos al modelo 3D]
 ```
 
 ## Primeros pasos
