@@ -12,6 +12,7 @@ wheels/
 *.pt
 *.glb
 
+assets/
 outputs/
 outputs/**
 logs/
