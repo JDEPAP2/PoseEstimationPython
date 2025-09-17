@@ -1,7 +1,14 @@
+init:
+	uv venv --python 3.12
+	uv pip install -r "requirements.txt"
+
+	@if not exist assets\models mkdir assets\models
+
 # Variable para el modelo (por defecto)
 MODEL ?= ./assets/models/model.glb
 
-# Regla única que lanza el modelo y el dashboard en paralelo
-run:
-	@if not exist assets\models mkdir assets\models
-	uv run main.py $(MODEL) &
+start: 
+	uv run main.py $(MODEL) 
+
+test:
+	uv run pytest
