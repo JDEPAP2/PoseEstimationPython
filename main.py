@@ -11,7 +11,6 @@ import atexit
 import os
 import subprocess
 import sys
-from typing import Optional
 
 # --- Rutas base del proyecto -------------------------------------------------
 
@@ -95,14 +94,14 @@ def _parse_args(argv: list[str]) -> tuple[str, int, int, int]:
     """Parsea argumentos de línea de comandos.
 
     Formato:
-        python main.py assets/models/rig.glb [cam_index] [imgsz] [port]
+        python main.py assets/models/model.glb [cam_index] [imgsz] [port]
 
     Returns:
         Tupla (glb_path, cam_index, imgsz, port).
     """
     if len(argv) < 2:
         print(
-            "Uso: python main.py assets/models/rig.glb [cam_index] [imgsz] [port]"
+            "Uso: python main.py assets/models/model.glb [cam_index] [imgsz] [port]"
         )
         sys.exit(0)
 

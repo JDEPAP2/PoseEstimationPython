@@ -7,6 +7,14 @@ Responsabilidad única:
 
 from __future__ import annotations
 
+import warnings
+
+warnings.filterwarnings(
+    "ignore",
+    category=FutureWarning,
+    message=".*DataFrame concatenation with empty or all-NA entries.*"
+)
+
 from typing import Any, Dict, List, Optional
 
 import pandas as pd
