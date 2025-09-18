@@ -12,10 +12,9 @@ assets/
   models/              # Modelos (.pt, .onnx, .pkl, etc.)
 tests/                 # Pruebas unitarias (pytest)
 src/                   # Archivos source del proyecto
-main.py                # Punto de entrada por defecto (puedes usar ENTRY=app.py)
-app.py                 # Alternativo, si existe
+main.py                # Punto de entrada por defecto 
 pyproject.toml         # PEP 621 (opcional)
-requirements.txt       # Requerimientos (si no usas pyproject)
+requirements.txt       # Requerimientos 
 Makefile               # Tareas comunes
 ```
 
