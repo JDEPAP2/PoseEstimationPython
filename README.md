@@ -33,13 +33,11 @@ flowchart TD
 # 1) Instalar dependencias usando uv
 make init
 
-# 2) El comando init te creará una carpeta assets/models, acá tienes que colocar el modelo .glb para ejecutar la aplicación 
-
-# 3) Ejecutar pruebas
+# 2) Ejecutar pruebas
 make test
 
-# 4) Ejecutar la app
-make run                 
+# 3) Ejecutar la app
+make start                 
 
 ```
 
