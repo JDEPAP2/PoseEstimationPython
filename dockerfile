@@ -1,11 +1,6 @@
 # Imagen base con Python 3.12
 FROM python:3.12-slim
 
-# Variables de entorno
-ENV PYTHONUNBUFFERED=1 \
-    PIP_NO_CACHE_DIR=1 \
-    UV_SYSTEM_PYTHON=1
-
 # Instalar dependencias del sistema necesarias para OpenCV y YOLO
 RUN apt-get update && apt-get install -y --no-install-recommends \
         build-essential \
@@ -16,7 +11,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         libgl1 \
     && rm -rf /var/lib/apt/lists/*
 
-# Instalar uv (gestor rápido de dependencias)
+# Instalar uv 
 RUN pip install --upgrade pip setuptools wheel \
     && pip install uv
 
@@ -34,10 +29,7 @@ COPY src/ src/
 COPY tests/ tests/
 COPY assets/ assets/
 COPY main.py .
-COPY app.py .  # opcional si existe
-
-# Crear carpeta para modelos si no existe
-RUN mkdir -p assets/models
+copy assets/ assets/models/
 
 # Comando por defecto: correr la app
 CMD ["python", "main.py"]
