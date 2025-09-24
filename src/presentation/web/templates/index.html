@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="Content-Security-Policy"
+      content="default-src 'self' blob: data: https:; img-src 'self' blob: data: https:; media-src 'self' blob: data:; script-src 'self' https: 'unsafe-inline'; style-src 'self' 'unsafe-inline' https:;">
+    <title>Pose Estimation</title>
+
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+          "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+        }
+      }
+    </script>
+
+    <link rel="stylesheet" href="/static/css/styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  </head>
+  <body>
+    <div id="layout">
+      <!-- Escena principal: Three.js a pantalla completa de la columna -->
+      <div id="stage">
+        <canvas id="threeCanvas"></canvas>
+
+        <!-- HUD de cámara: pequeño overlay arriba-izquierda -->
+        <div id="camHud">
+          <video id="video" autoplay playsinline muted></video>
+          <canvas id="overlay"></canvas>
+        </div>
+      </div>
+
+      <!-- Panel derecho con KPIs y charts -->
+      <div id="chartsPane">
+        <div class="kpis">
+          <div class="kpi"><span id="kpiFps">0</span><label>Server FPS</label></div>
+          <div class="kpi"><span id="kpiMs">0</span><label>Inference ms</label></div>
+          <div class="kpi"><span id="kpiMeanConf">0</span><label>Mean kp conf</label></div>
+        </div>
+        <div style="margin-bottom:8px">
+          <label style="font-size:12px;color:#99a8b2">Modelo GLB:</label>
+          <select id="glbSelect"></select>
+        </div>
+        <canvas id="chartMs"></canvas>
+        <canvas id="chartFps"></canvas>
+        <canvas id="chartMeanConf"></canvas>
+      </div>
+    </div>
+    <script>
+      const glbPath  = {{ glb_path|default(None)|tojson|safe }};
+      const glbFiles = {{ glb_files|default([])|tojson|safe }};
+      const initial  = glbPath || (glbFiles && glbFiles.length ? glbFiles[0] : null);
+      console.log('GLB path inicial:', initial, 'Lista:', glbFiles);
+      window.__GLB_PATH__ = initial;
+
+      const sel = document.getElementById('glbSelect');
+      if (glbFiles && glbFiles.length) {
+        for (const p of glbFiles) {
+          const opt = document.createElement('option');
+          opt.value = p; opt.textContent = p.split('/').pop();
+          if (p === initial) opt.selected = true;
+          sel.appendChild(opt);
+        }
+      } else {
+        const opt = document.createElement('option');
+        opt.textContent = 'Sin modelos (.glb) en assets/models';
+        sel.appendChild(opt);
+      }
+
+      sel.addEventListener('change', () => {
+        const name = sel.value.split('/').pop();
+        const url = new URL(window.location.href);
+        url.searchParams.set('model', name);
+        window.location.href = url.toString();
+      });
+    </script>
+
+    <script src="/static/js/app.js" type="module"></script>
+    <script src="/static/js/charts.js" type="module"></script>
+    <script src="/static/js/three_app.js" type="module"></script>
+  </body>
+</html>
