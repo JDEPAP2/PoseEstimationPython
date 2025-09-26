@@ -23,4 +23,4 @@ COPY . .
 RUN mkdir -p assets/models
 
 # 5) Comando por defecto
-CMD ["python", "main.py"]
+CMD ["python", "main.py", "--cert=adhoc"]
