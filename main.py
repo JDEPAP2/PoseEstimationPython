@@ -45,7 +45,8 @@ def main() -> None:
         host="0.0.0.0",
         port=port,
         debug=False,
-        threaded=True,  # Permite concurrencia en /api/infer y /api/metrics
+        threaded=True,  # Permite concurrencia en /api/infer y /api/metrics,
+        ssl_context="adhoc"
     )
 
 
